@@ -42,18 +42,28 @@
 
 var express = require('express');
 const bodyParser = require('body-parser');
-const birds = require('./bird');
-
 var app = express();
 var server = require('http').Server(app);
 server.listen(8000);
+
+const birds = require('./bird');
+const user = require('./controller/user');
+
+
+
+
+
 app.use(express.static('web'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
     extended: true
 }));
+
 app.use("/birds", birds);
+app.use("/user", user);
+
 console.log("server running port 8000");
+
 
 
 
